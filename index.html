@@ -49,6 +49,10 @@
        
      };
 
+     document.querySelector('#my-checkout-link').addEventListener('click', () => {
+       invokeCashAppBegin("#my-checkout-link click");
+     });
+
      // Just trying to invoke the Cash App begin function
      // from within a timer, just to see if we can even invoke
      // the begin function outside of a click handler.
@@ -56,11 +60,6 @@
      setTimeout(() => {
        invokeCashAppBegin("setTimeout");
      }, 500);
-
-     document.querySelector('#my-checkout-link').addEventListener('click', () => {
-       // invokeCashAppBegin("#my-checkout-link click");
-       begin;
-     });
 
      invokeCashAppBegin("inline");
      
