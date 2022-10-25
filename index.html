@@ -35,20 +35,26 @@
          );
        }
      );
-//     await pay.render("#cash-app-pay");
-           const { begin } = await pay.render('#cash-app-pay', {
+     
+     // await pay.render("#cash-app-pay");
+     const { begin } = await pay.render('#cash-app-pay', {
         button: false,
         manage: false,
       });
 
+     // Just trying this to see if we can invoke the begin function
+     // outside of a click handler. No luck with oncontentload.
      setTimeout(() => {
+       console.log("Invoking Cash App begin...");
        begin;
-       console.log("After begin...");
+       console.log("Cash App begin invoked.");       
      }, 500);
+
      const amount = {
        currency: 'USD',
        value: 1234, // $12.34
      };
+
      const scopeId = 'BRAND_1pk9ph4rsnj4xftcp60omnet0';
      await pay.customerRequest({
        referenceId: 'your_reference_id', // perhaps a cart or checkout identifier
