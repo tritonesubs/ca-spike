@@ -2,12 +2,6 @@
 
 <head>
   <script src="https://sandbox.kit.cash.app/v1/pay.js"></script>
-  <script>
-   document.addEventListener('DOMContentLoaded',function(){
-     document.querySelector("#cash-app-pay").click();
-   });
-   
-  </script>
   <script type="module">
     try {
       const pay = await window.CashApp.pay({
@@ -37,11 +31,13 @@
           );
         }
       );
-      await pay.render("#cash-app-pay");
+      // await pay.render("#cash-app-pay");
       const { begin } = await pay.render('#cash-app-pay', {
         button: false,
         manage: false,
       });
+     begin;
+   });
       
       document.addEventListener("DOMContentLoaded", () => {
         console.log("Hello World!");
