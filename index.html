@@ -45,7 +45,7 @@
      // Just trying to invoke the Cash App begin function
      // from within a timer, just to see if we can even invoke
      // the begin function outside of a click handler.
-     // Had no luck with doing this oncontentload.
+     // Had no luck with doing this on DOMContentLoaded.
      setTimeout(() => {
        console.log("Invoking Cash App begin...");
        begin;
@@ -53,8 +53,8 @@
      }, 500);
 
      document.querySelector('#my-checkout-link').addEventListener('click', () => {
-      begin();
-    });
+       begin();
+     });
 
      const amount = {
        currency: 'USD',
