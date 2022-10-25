@@ -44,7 +44,7 @@
      
      let invokeCashAppBegin = (source) => {
        console.log(`Invoking Cash App begin from ${source}...`);
-       begin;
+       begin();
        console.log(`Cash App begin invoked from ${source}.`);       
        
      };
@@ -61,7 +61,7 @@
        invokeCashAppBegin("setTimeout");
      }, 500);
 
-     // invokeCashAppBegin("inline");
+     invokeCashAppBegin("inline");
      
      const amount = {
        currency: 'USD',
