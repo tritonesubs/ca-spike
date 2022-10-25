@@ -42,8 +42,10 @@
         manage: false,
       });
 
-     // Just trying this to see if we can invoke the begin function
-     // outside of a click handler. No luck with oncontentload.
+     // Just trying to invoke the Cash App begin function
+     // from within a timer, just to see if we can even invoke
+     // the begin function outside of a click handler.
+     // Had no luck with doing this oncontentload.
      setTimeout(() => {
        console.log("Invoking Cash App begin...");
        begin;
