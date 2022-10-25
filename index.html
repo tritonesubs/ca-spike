@@ -1,15 +1,80 @@
 <html>
 
 <head>
+  <script src="https://sandbox.kit.cash.app/v1/pay.js"></script>
   <script>
-     document.addEventListener('DOMContentLoaded',function(){
-       window.open("https://cash.app/$helloworld/7.07")
-     });
+   document.addEventListener('DOMContentLoaded',function(){
+     document.querySelector("#cash-app-pay").click();
+   });
+   
+  </script>
+  <script type="module">
+    try {
+      const pay = await window.CashApp.pay({
+        clientId: "CAS-CI_CASH-APP-PARTNER-ENG",
+      });
+      pay.addEventListener(
+        "CUSTOMER_REQUEST_APPROVED",
+        ({
+          grants,
+          referenceId,
+          customerProfile
+        }) => {
+          // send grant to backend to authorize payment
+          console.log(
+            "[Pay Kit] CUSTOMER_REQUEST_APPROVED",
+            grants,
+            referenceId,
+            customerProfile
+          );
+        }
+      );
+      pay.addEventListener(
+        "CUSTOMER_REQUEST_DECLINED",
+        () => {
+          console.log(
+            "[Pay Kit] CUSTOMER_REQUEST_DECLINED"
+          );
+        }
+      );
+      await pay.render("#cash-app-pay");
+      const { begin } = await pay.render('#cash-app-pay', {
+        button: false,
+        manage: false,
+      });
+      
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("Hello World!");
+        begin();
+      });
+      
+      
+      const amount = {
+        currency: 'USD',
+        value: 1234, // $12.34
+      };
+      const scopeId = 'BRAND_1pk9ph4rsnj4xftcp60omnet0';
+      await pay.customerRequest({
+        referenceId: 'your_reference_id', // perhaps a cart or checkout identifier
+        redirectURL: window.location.href, // where mobile customers should be redirected to
+        actions: {
+          amount:amount,
+          onFile: {
+            scopeId,
+            accountReferenceId: "123"
+          },
+        },
+      });
+    } catch (error) {
+      console.error("[Pay Kit]", error);
+    }
   </script>
 </head>
 
 <body>
-  <p>Launching Cash APP...</p>
+  <div id="cash-app-pay"></div>
+  
+  <div id="my-checkout-button">Checkout</div>
 </body>
 
 </html>
