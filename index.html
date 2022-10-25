@@ -41,7 +41,10 @@
         manage: false,
       });
 
-     begin;
+     setTimeout(() => {
+       begin;
+       console.log("After begin...");
+     }
      const amount = {
        currency: 'USD',
        value: 1234, // $12.34
