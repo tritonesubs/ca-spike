@@ -33,6 +33,8 @@
        }
      );
      
+     await pay.render("#cash-app-pay");
+
      const { begin } = await pay.render('#cash-app-pay', {
        button: false,
        manage: false,
