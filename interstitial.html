@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>Cash App Pay</title>
+    <link rel="icon" href="https://cash.app/favicon.ico" type="image/x-icon" />
+
+    <style>
+      @font-face {
+        font-family: 'cash-market-rounded';
+        src: url('https://cash-f.squarecdn.com/static/fonts/cash-market/v2/CashMarket-RegularRounded.woff2')
+          format('woff2');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'cash-market-rounded';
+        src: url('https://cash-f.squarecdn.com/static/fonts/cash-market/v2/CashMarket-MediumRounded.woff2')
+          format('woff2');
+        font-weight: 500;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'cash-market-rounded';
+        src: url('https://cash-f.squarecdn.com/static/fonts/cash-market/v2/CashMarket-BoldRounded.woff2')
+          format('woff2');
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100%;
+        width: 100%;
+        font-family: cash-market-rounded, -apple-system, BlinkMacSystemFont,
+          'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        -webkit-font-smoothing: antialiased;
+        background: rgb(255, 255, 255);
+        color: rgb(51, 51, 51);
+      }
+
+      .container {
+        display: flex;
+        align-items: stretch;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+      }
+
+      .message {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .message h5.header {
+        align-items: center;
+        box-shadow: 0px 1.5px 3px rgba(0, 0, 0, 0.04);
+        display: flex;
+        font-weight: 500;
+        font-size: 18px;
+        padding: 18px 24px;
+        width: 100%;
+      }
+
+      .cash-icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+        background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4 2H20C21.1046 2 22 2.89543 22 4V20C22 21.1046 21.1046 22 20 22H4C2.89543 22 2 21.1046 2 20V4C2 2.89543 2.89543 2 4 2ZM14.7933 9.68157C14.1653 9.11994 13.2043 8.71079 12.2016 8.71079C11.4168 8.71079 10.6315 8.99378 10.6315 9.70935C10.6315 10.3873 11.3484 10.6477 12.2232 10.9656C12.2961 10.992 12.3701 11.0189 12.4448 11.0464C14.1458 11.6304 15.5474 12.3462 15.5474 14.0412C15.5474 15.8835 14.1409 17.1422 11.8429 17.2852L11.6342 18.2866C11.5963 18.4703 11.4346 18.6014 11.2485 18.6L9.80247 18.589C9.55438 18.5869 9.37089 18.3566 9.42229 18.1124L9.64253 17.0707C8.73802 16.8225 7.9455 16.3792 7.31953 15.7669C7.16131 15.6124 7.15988 15.356 7.31695 15.2001L8.1198 14.4021C8.27199 14.2507 8.51549 14.2519 8.66767 14.4032C9.44354 15.174 10.4434 15.4915 11.3978 15.4915C12.4448 15.4915 13.1549 15.0583 13.1549 14.3236C13.1549 13.6763 12.5737 13.4602 11.4664 13.0484C11.3497 13.005 11.2272 12.9595 11.0989 12.911C9.67842 12.4026 8.33258 11.668 8.33258 9.95385C8.33258 7.97382 9.95925 7.00883 11.8785 6.91219L12.0896 5.91219C12.1281 5.73018 12.2877 5.59998 12.4723 5.59998H13.9161C14.1648 5.59998 14.35 5.8303 14.2992 6.07538L14.0648 7.1998C14.8933 7.47324 15.5663 7.90032 16.0677 8.33464C16.238 8.48192 16.2437 8.74581 16.0861 8.90697L15.3389 9.67057C15.1899 9.82277 14.9521 9.82364 14.7933 9.68157Z' fill='%2300D64F'/%3E%3C/svg%3E%0A");
+      }
+
+      .message h3 {
+        margin: 8px 0 2px;
+        font-size: 24px;
+        font-weight: 500;
+        max-width: 440px;
+        align-items: center;
+        padding: 48px 24px;
+        text-align: center;
+      }
+
+      .button-container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        max-width: 440px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .button-group {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        padding: 24px 32px 52px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .button {
+        margin: 12px;
+        appearance: none;
+        background-color: rgb(0, 214, 79);
+        border: none;
+        border-radius: 28px;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        display: block;
+        height: 56px;
+        letter-spacing: 0.2px;
+        line-height: 100%;
+        overflow: hidden;
+        padding: 0px 18px;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        font-size: 18px;
+        font-weight: 500;
+        box-shadow: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .button.grey {
+        color: #333;
+        background-color: #f4f4f4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="message" id="loading-message">
+        <h5 class="header">
+          <div class="cash-icon"></div>
+          Cash App
+        </h5>
+        <h3>Opening Cash App...</h3>
+      </div>
+      <div class="message" id="install-message">
+        <h5 class="header">
+          <div class="cash-icon"></div>
+          Cash App
+        </h5>
+        <h3>Open Cash App to complete your purchase</h3>
+
+        <div class="button-container">
+          <div class="button-group">
+            <a
+              class="button green"
+              href="cashme://cash.app/f/GRANTLY_MANAGED_GRANT%3Frequest_id&#61;GRR_zdh0hddba1qhhanv4p1sdeyd-2c7sv9&amp;method&#61;mobile_url&amp;type&#61;cap&amp;fallback&#61;liaison"
+              id="universal-redirect"
+              >Open with Cash App</a
+            >
+
+            <a class="button grey" href="#" id="get-cash-app">Get Cash App</a>
+          </div>
+        </div>
+      </div>
+      <div class="message" id="error-message">
+        <h3>A problem has occurred.</h3>
+      </div>
+    </div>
+    <script>
+     const params = new URLSearchParams(window.location.search);
+     /* note: request ID can come from query param or path */
+     const requestId =
+       params.get('requestId') ||
+       window.location.pathname.match(/GRR_[A-Za-z0-9]+/);
+     const merchantRedirectURL =
+       params.get('merchantRedirectURL') ||
+       'https://tritonesubs.github.io/ca-spike/button.html?cash_request_id=GRR_zdh0hddba1qhhanv4p1sdeyd';
+     let universalLinkURL =
+       params.get('universalLinkURL') ||
+       'cashme://cash.app/f/GRANTLY_MANAGED_GRANT%3Frequest_id=GRR_zdh0hddba1qhhanv4p1sdeyd-2c7sv9&method=mobile_url&type=cap&fallback=liaison';
+     const requestStatus =
+       params.get('requestStatus') || 'PENDING';
+     const BASE_URL = params.get('baseUrl') || '/';
+
+     function isTerminal(status) {
+       return ['APPROVED', 'DECLINED', 'ERROR'].includes(status);
+     }
+
+     function fetchRequest(requestId) {
+       return fetch(
+         BASE_URL +
+         `customer-request/v1/requests/${requestId}/interstitial-status`,
+         {
+           headers: new Headers({ accept: 'application/json' }),
+         }
+       ).then((resp) => {
+         if (!resp.ok) {
+           throw 'Request failed';
+         }
+         return resp.json();
+       });
+     }
+
+     function poll() {
+       fetchRequest(requestId).then(
+         (resp) => {
+           const status = resp.request_interstitial_status.status;
+
+           universalLinkURL =
+             resp.request_interstitial_status.universal_link_url;
+           document.getElementById('universal-redirect').href =
+             universalLinkURL;
+
+           if (isTerminal(status)) {
+             merchantRedirect();
+           } else {
+             setTimeout(poll, 1000);
+           }
+         },
+         () => {
+           /* error response from API */
+           showError();
+         }
+       );
+     }
+
+     function startPolling() {
+       poll();
+     }
+
+     function hideMessages() {
+       document.getElementById('loading-message').style.display = 'none';
+       document.getElementById('error-message').style.display = 'none';
+       document.getElementById('install-message').style.display = 'none';
+     }
+
+     function merchantRedirect() {
+       hideMessages();
+       window.location.href = merchantRedirectURL;
+     }
+
+     function showError() {
+       hideMessages();
+       document.getElementById('error-message').style.display = 'flex';
+     }
+
+     function showInstall() {
+       hideMessages();
+       document.getElementById('install-message').style.display = 'flex';
+     }
+
+     function showLoading() {
+       hideMessages();
+       document.getElementById('loading-message').style.display = 'flex';
+     }
+
+     hideMessages();
+
+     if ("" !== "") {
+       showLoading();
+     } else if (isTerminal(requestStatus)) {
+       merchantRedirect();
+     } else {
+       showInstall();
+     }
+
+     startPolling();
+
+     /* Set correct app store link based on device */
+     const iOSPlatforms = new Set([
+       'iPhone Simulator',
+       'iPod Simulator',
+       'iPhone',
+       'iPod',
+     ]);
+     const isIOSOlder = iOSPlatforms.has(window.navigator.platform);
+     const isIOSNewer =
+       /iPhone|iPod/.test(window.navigator.userAgent) &&
+       'ontouchend' in document;
+     const isIOS = isIOSOlder || isIOSNewer;
+
+     /* isAndroid determines if the current User Agent is likely the Android platform */
+     const isAndroid = /android/i.test(window.navigator.userAgent);
+
+     if (isIOS) {
+       document.getElementById('get-cash-app').href =
+         'https://apps.apple.com/us/app/square-cash/id711923939';
+     } else if (isAndroid) {
+       document.getElementById('get-cash-app').href =
+         'https://play.google.com/store/apps/details?id=com.squareup.cash&referrer=utm_medium%3Dweb%26utm_source%3Dcash-web-flow-page';
+     } else {
+       document.getElementById('get-cash-app').href = 'https://cash.app';
+     }
+
+     /* account for Safari on iOS viewport height */
+     function setViewHeight() {
+       let vh = window.innerHeight * 0.01;
+       document.documentElement.style.setProperty('--vh', `${vh}px`);
+     }
+
+     window.addEventListener('resize', setViewHeight);
+     setViewHeight();
+    </script>
+  </body>
+  <!--
+       merchant_redirect_url:`https://tritonesubs.github.io/ca-spike/button.html?cash_request_id=GRR_zdh0hddba1qhhanv4p1sdeyd`
+       universal_link_url:`cashme://cash.app/f/GRANTLY_MANAGED_GRANT%3Frequest_id=GRR_zdh0hddba1qhhanv4p1sdeyd-2c7sv9&method=mobile_url&type=cap&fallback=liaison`
+       status:`PENDING`
+  -->
+</html>
