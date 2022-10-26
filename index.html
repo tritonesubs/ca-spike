@@ -31,7 +31,6 @@
        }
      );
      
-     // await pay.render("#cash-app-pay");
      const { begin } = await pay.render('#cash-app-pay', {
        button: false,
        manage: false,
@@ -42,21 +41,6 @@
        begin();
        console.log(`Cash App begin invoked from ${source}.`);       
      };
-
-     // document.querySelector('#my-checkout-link').addEventListener('click', () => {
-     //  invokeCashAppBegin("#my-checkout-link click");
-     // });
-
-     // Just trying to invoke the Cash App begin function
-     // from within a timer, just to see if we can even invoke
-     // the begin function outside of a click handler.
-     // Had no luck with doing this on DOMContentLoaded.
-     setTimeout(() => {
-       // invokeCashAppBegin("setTimeout");
-     }, 500);
-
-     // This works:
-     // invokeCashAppBegin("inline");
 
      window.addEventListener('load', (event) => {
        console.log('window.load');
@@ -88,7 +72,6 @@
 
 <body>
   <div id="cash-app-pay"></div>
-  <a href="#" id="my-checkout-link">My Cash App Pay (click me)</a> 
 </body>
 
 </html>
