@@ -59,9 +59,9 @@
      // This works:
      // invokeCashAppBegin("inline");
 
-     document.addEventListener('load', (event) => {
-       console.log('document.onload');
-       invokeCashAppBegin("window.onload");
+     window.addEventListener('DOMContentLoaded', (event) => {
+       console.log('window.DOMContentLoaded');
+       invokeCashAppBegin("window.DOMContentLoaded");
      });
 
      const amount = {
