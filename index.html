@@ -44,9 +44,9 @@
        
      };
 
-     document.querySelector('#my-checkout-link').addEventListener('click', () => {
-       invokeCashAppBegin("#my-checkout-link click");
-     });
+     // document.querySelector('#my-checkout-link').addEventListener('click', () => {
+     //  invokeCashAppBegin("#my-checkout-link click");
+     // });
 
      // Just trying to invoke the Cash App begin function
      // from within a timer, just to see if we can even invoke
@@ -60,8 +60,8 @@
      // invokeCashAppBegin("inline");
 
      window.addEventListener('load', (event) => {
-       console.log('on load');
-       invokeCashAppBegin("window load");
+       console.log('window.onload');
+       invokeCashAppBegin("window.onload");
      });
 
      const amount = {
