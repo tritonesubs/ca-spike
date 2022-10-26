@@ -1,11 +1,6 @@
 <html>
-
 <head>
   <script src="https://sandbox.kit.cash.app/v1/pay.js"></script>
-</head>
-
-<body>
-  <div id="cash-app-pay"></div>
   <script type="module">
    try {
      const pay = await window.CashApp.pay({
@@ -62,8 +57,13 @@
      }, 500);
 
      // This works:
-     invokeCashAppBegin("inline");
-     
+     // invokeCashAppBegin("inline");
+
+     window.addEventListener('load', (event) => {
+       console.log('on load');
+       invokeCashAppBegin("window load");
+     });
+
      const amount = {
        currency: 'USD',
        value: 1234, // $12.34
@@ -85,6 +85,10 @@
      console.error("[Pay Kit]", error);
    }
   </script>
+</head>
+
+<body>
+  <div id="cash-app-pay"></div>
   <a href="#" id="my-checkout-link">My Cash App Pay (click me)</a> 
 </body>
 
