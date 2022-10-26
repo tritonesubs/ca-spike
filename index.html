@@ -35,7 +35,7 @@
      
      await pay.render("#cash-app-pay");
 
-     const { begin } = await pay.render('#cash-app-pay', {
+     const { begin } = await pay.render('#cash-app-pay-autoload', {
        button: false,
        manage: false,
      });
@@ -89,6 +89,7 @@
 
 <body>
   <div id="cash-app-pay"></div>
+  <div id="cash-app-pay-autoload"></div>
 </body>
 
 </html>
