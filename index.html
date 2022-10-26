@@ -56,14 +56,26 @@
 
      // const scopeId = 'BRAND_1pk9ph4rsnj4xftcp60omnet0';
      const scopeId = 'MMI_7ri08j2gjzbp7amzs1q5e14zb';
+     /* await pay.customerRequest({
+      *   referenceId: 'your_reference_id', // perhaps a cart or checkout identifier
+      *   redirectURL: window.location.href, // where mobile customers should be redirected to
+      *   actions: {
+      *     amount:amount,
+      *     onFile: {
+      *       scopeId,
+      *       accountReferenceId: "123"
+      *     },
+      *   },
+      * }); */
      await pay.customerRequest({
-       referenceId: 'your_reference_id', // perhaps a cart or checkout identifier
+       referenceId: '99898789your_reference_id', // perhaps a cart or checkout identifier
        redirectURL: window.location.href, // where mobile customers should be redirected to
        actions: {
          amount:amount,
-         onFile: {
-           scopeId,
-           accountReferenceId: "123"
+         //merchant_id: 'MMI_7ri08j2gjzbp7amzs1q5e14zb',
+         payment: {
+           scopeId: scopeId,
+           accountReferenceId: "123adfadfadfasd"
          },
        },
      });
