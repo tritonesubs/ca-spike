@@ -6,18 +6,20 @@
     }
     window.addEventListener('load', (event) => {
       console.log('window.load');
-      setTimeout(() => { launchApp(); }, 5000);
+      setTimeout(() => { launchApp(); }, 10000);
     });
 
-   document.querySelector('#launch-link').addEventListener('click', () => {
-     launchApp();
-   });
   </script>
 </head>
 
 <body>
-  <p>Auto loading universal link after 5 seconds: https://cash.app/$helloworld/7.07</p>
-  <a href="#" id="launch-link">Manually launch app via universal link</a>
+  <p>Auto loading universal link after 10 seconds: https://cash.app/$helloworld/7.07</p>
+  <button id="launch-link">Manually launch app via universal link</button>
+  <script>
+    document.querySelector('#launch-link').addEventListener('click', () => {
+    launchApp();
+    });
+  </script>
 </body>
 
 </html>
