@@ -1,0 +1,102 @@
+<html>
+<head>
+  <!-- <script src="https://sandbox.kit.cash.app/v1/pay.js"></script> -->
+  <script src='https://kit.cash.app/v1/pay.js'></script>
+  <script type="module">
+   try {
+     const pay = await window.CashApp.pay({
+       // clientId: "CAS-CI_CASH-APP-PARTNER-ENG",
+       clientId: "CA-CI_CAPWEB",
+     });
+     pay.addEventListener(
+       "CUSTOMER_REQUEST_APPROVED",
+       ({
+         grants,
+         referenceId,
+         customerProfile
+       }) => {
+         // send grant to backend to authorize payment
+         console.log(
+           "[Pay Kit] CUSTOMER_REQUEST_APPROVED",
+           grants,
+           referenceId,
+           customerProfile
+         );
+       }
+     );
+     pay.addEventListener(
+       "CUSTOMER_REQUEST_DECLINED",
+       () => {
+         console.log(
+           "[Pay Kit] CUSTOMER_REQUEST_DECLINED"
+         );
+       }
+     );
+     
+     const { begin } = await pay.render('#cash-app-pay', {
+       button: false,
+       manage: false,
+     });
+
+     document.querySelector('#my-checkout-button').addEventListener('click', () => {
+       // NB: a customer may be redirected away from your page
+       invokeCashAppBegin("click self-managed button");
+     });
+     
+     const invokeCashAppBegin = (source) => {
+       console.log(`Invoking Cash App begin from ${source}...`);
+       begin();
+       console.log(`Cash App begin invoked from ${source}.`);       
+     };
+
+     window.addEventListener('load', (event) => {
+       console.log('window.load');
+       // invokeCashAppBegin("window.load");
+       $("#my-checkout-button").click();
+     });
+
+     const amount = {
+       currency: 'USD',
+       value: 1234, // $12.34
+     };
+
+     // const scopeId = 'BRAND_1pk9ph4rsnj4xftcp60omnet0';
+     const scopeId = 'MMI_7ri08j2gjzbp7amzs1q5e14zb';
+     /* await pay.customerRequest({
+      *   referenceId: 'your_reference_id', // perhaps a cart or checkout identifier
+      *   redirectURL: window.location.href, // where mobile customers should be redirected to
+      *   actions: {
+      *     amount:amount,
+      *     onFile: {
+      *       scopeId,
+      *       accountReferenceId: "123"
+      *     },
+      *   },
+      * }); */
+     await pay.customerRequest({
+       referenceId: '99898789your_reference_id', // perhaps a cart or checkout identifier
+       redirectURL: window.location.href, // where mobile customers should be redirected to
+       actions: {
+         amount:amount,
+         //merchant_id: 'MMI_7ri08j2gjzbp7amzs1q5e14zb',
+         payment: {
+           scopeId: scopeId,
+           accountReferenceId: "123adfadfadfasd"
+         },
+       },
+     });
+   } catch (error) {
+     console.error("[Pay Kit]", error);
+     }
+  </script>
+</head>
+
+<body>
+  <div id="cash-app-pay"></div>
+  <br>
+  <br>
+  <br>
+  <a href="#" id="my-checkout-button">Checkout</a>
+</body>
+
+</html>
