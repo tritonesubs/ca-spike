@@ -1,0 +1,23 @@
+<html>
+<head>
+  <script>
+    function launchApp() {
+      window.location.href = "https://cash.app/$helloworld/7.07";
+    }
+    window.addEventListener('load', (event) => {
+      console.log('window.load');
+      launchApp();
+    });
+
+   document.querySelector('#launch-link').addEventListener('click', () => {
+     launchApp();
+   });
+  </script>
+</head>
+
+<body>
+  <p>Attempting to auto load universal link: https://cash.app/$helloworld/7.07</p>
+  <a href"#" id="#launch-link">Manually launch app via universal link</a>
+</body>
+
+</html>
