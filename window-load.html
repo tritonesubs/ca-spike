@@ -1,11 +1,14 @@
 <html>
 <head>
-  <!-- <script src="https://sandbox.kit.cash.app/v1/pay.js"></script> -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/pico.min.css">
+  <title>Attempt to Launch Cash App On Window Load</title>
+
   <script src='https://kit.cash.app/v1/pay.js'></script>
   <script type="module">
    try {
      const pay = await window.CashApp.pay({
-       // clientId: "CAS-CI_CASH-APP-PARTNER-ENG",
        clientId: "CA-CI_CAPWEB",
      });
      pay.addEventListener(
@@ -54,19 +57,7 @@
        value: 1234, // $12.34
      };
 
-     // const scopeId = 'BRAND_1pk9ph4rsnj4xftcp60omnet0';
      const scopeId = 'MMI_7ri08j2gjzbp7amzs1q5e14zb';
-     /* await pay.customerRequest({
-      *   referenceId: 'your_reference_id', // perhaps a cart or checkout identifier
-      *   redirectURL: window.location.href, // where mobile customers should be redirected to
-      *   actions: {
-      *     amount:amount,
-      *     onFile: {
-      *       scopeId,
-      *       accountReferenceId: "123"
-      *     },
-      *   },
-      * }); */
      await pay.customerRequest({
        referenceId: '99898789your_reference_id', // perhaps a cart or checkout identifier
        redirectURL: window.location.href, // where mobile customers should be redirected to
@@ -87,6 +78,7 @@
 
 <body>
   <main class="container">
+    <h1>Attempt to Launch Cash App On Window Load</h1>
     <ul>
       <li>This page attempts to launch Cash App on page load.</li>
       <li>On Page load, it attepts to load the universal link the Cash App, which should open the app.</li>
