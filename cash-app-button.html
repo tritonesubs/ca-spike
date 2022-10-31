@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/pico.min.css">
-  <title>Custom Button</title>
+  <title>Cash-App Managed Button</title>
 
   <script src='https://kit.cash.app/v1/pay.js'></script>
   <script type="module">
@@ -36,26 +36,13 @@
        }
      );
 
-     const { begin } = await pay.render('#cash-app-pay', {
-       button: false,
-       manage: false,
-     });
-
-     document.querySelector('#my-checkout-button').addEventListener('click', () => {
-       // NB: a customer may be redirected away from your page
-       invokeCashAppBegin("click self-managed button");
-     });
+     await pay.render("#cash-app-pay");
 
      const invokeCashAppBegin = (source) => {
        console.log(`Invoking Cash App begin from ${source}...`);
        begin();
        console.log(`Cash App begin invoked from ${source}.`);
      };
-
-     window.addEventListener('load', (event) => {
-       console.log('window.load');
-       // invokeCashAppBegin("window.load");
-     });
 
      const amount = {
        currency: 'USD',
@@ -83,10 +70,6 @@
 
 <body>
   <div id="cash-app-pay"></div>
-  <br>
-  <br>
-  <br>
-  <a href="#" id="my-checkout-button">Checkout</a>
 </body>
 
 </html>

@@ -1,92 +1,46 @@
 <html>
 <head>
-  <!-- <script src="https://sandbox.kit.cash.app/v1/pay.js"></script> -->
-  <script src='https://kit.cash.app/v1/pay.js'></script>
-  <script type="module">
-   try {
-     const pay = await window.CashApp.pay({
-       // clientId: "CAS-CI_CASH-APP-PARTNER-ENG",
-       clientId: "CA-CI_CAPWEB",
-     });
-     pay.addEventListener(
-       "CUSTOMER_REQUEST_APPROVED",
-       ({
-         grants,
-         referenceId,
-         customerProfile
-       }) => {
-         // send grant to backend to authorize payment
-         console.log(
-           "[Pay Kit] CUSTOMER_REQUEST_APPROVED",
-           grants,
-           referenceId,
-           customerProfile
-         );
-       }
-     );
-     pay.addEventListener(
-       "CUSTOMER_REQUEST_DECLINED",
-       () => {
-         console.log(
-           "[Pay Kit] CUSTOMER_REQUEST_DECLINED"
-         );
-       }
-     );
-     
-     const { begin } = await pay.render('#cash-app-pay', {
-       button: false,
-       manage: false,
-     });
-     
-     const invokeCashAppBegin = (source) => {
-       console.log(`Invoking Cash App begin from ${source}...`);
-       begin();
-       console.log(`Cash App begin invoked from ${source}.`);       
-     };
-
-     window.addEventListener('load', (event) => {
-       console.log('window.load');
-       invokeCashAppBegin("window.load");
-     });
-
-     const amount = {
-       currency: 'USD',
-       value: 1234, // $12.34
-     };
-
-     // const scopeId = 'BRAND_1pk9ph4rsnj4xftcp60omnet0';
-     const scopeId = 'MMI_7ri08j2gjzbp7amzs1q5e14zb';
-     /* await pay.customerRequest({
-      *   referenceId: 'your_reference_id', // perhaps a cart or checkout identifier
-      *   redirectURL: window.location.href, // where mobile customers should be redirected to
-      *   actions: {
-      *     amount:amount,
-      *     onFile: {
-      *       scopeId,
-      *       accountReferenceId: "123"
-      *     },
-      *   },
-      * }); */
-     await pay.customerRequest({
-       referenceId: '99898789your_reference_id', // perhaps a cart or checkout identifier
-       redirectURL: window.location.href, // where mobile customers should be redirected to
-       actions: {
-         amount:amount,
-         //merchant_id: 'MMI_7ri08j2gjzbp7amzs1q5e14zb',
-         payment: {
-           scopeId: scopeId,
-           accountReferenceId: "123adfadfadfasd"
-         },
-       },
-     });
-   } catch (error) {
-     console.error("[Pay Kit]", error);
-   }
-  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/pico.min.css">
+  <title>Experiments to Launch Cash App on Page Load</title>
 </head>
 
 <body>
-  <div id="cash-app-pay"></div>
+  <main class="container">
+    <h1>Experiments to Launch Cash App on Page Load</h1>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Page</th>
+          <th scope="col">Description</th>
+          <th scope="col">Behavior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="cash-app-button.html">cash-app-button.html</a></th>
+          <td>Button rendered and totally managed by Cash API Button</td>
+          <td>When clicked on phone, directly launches Cash App</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="custom-button.html">custom-app-button.html</a></th>
+          <td>Custom button, rendered and managed by us</td>
+          <td>When clicked on phone, directly launches Cash App</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="window-load.html">window-load.html</a></th>
+          <td>Attempt to launch app on page load</td>
+          <td>When opened on phone, on page load automatically loads Cash App interstitial page</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="universal-link.html">universal-link.html</a></th>
+          <td>Directly use Universal Link without Cash Pay API involved. Demonstrates that not being able to launch app on page load is due to an iOS-level restriction</td>
+          <td>When opened on phone, in 10 seconds automatically loads Cash App interstitial page, but custom button launches Cash App.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
 </body>
 
 </html>

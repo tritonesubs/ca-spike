@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/pico.min.css">
+  <title>Universal Link Only (No Cash/Pay API Involved)</title>
+  <script>
+    function launchApp() {
+      window.location.href = "https://cash.app/$lanthonygarcia/.01";
+    }
+    window.addEventListener('load', (event) => {
+      console.log('window.load');
+      setTimeout(() => { launchApp(); }, 10000);
+    });
+
+  </script>
+</head>
+
+<body>
+  <main class="container">
+    <p>Auto loading universal link after 10 seconds: <a href="https://cash.app/$lanthonygarcia/.01">https://cash.app/$lanthonygarcia/.01</a></p>
+    <button id="launch-link">Manually launch app via universal link</button>
+    <script>
+      document.querySelector('#launch-link').addEventListener('click', () => {
+      launchApp();
+      });
+    </script>
+  </main>
+</body>
+</html>
