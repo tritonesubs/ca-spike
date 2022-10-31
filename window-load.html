@@ -32,16 +32,16 @@
          );
        }
      );
-     
+
      const { begin } = await pay.render('#cash-app-pay', {
        button: false,
        manage: false,
      });
-     
+
      const invokeCashAppBegin = (source) => {
        console.log(`Invoking Cash App begin from ${source}...`);
        begin();
-       console.log(`Cash App begin invoked from ${source}.`);       
+       console.log(`Cash App begin invoked from ${source}.`);
      };
 
      window.addEventListener('load', (event) => {
@@ -86,7 +86,14 @@
 </head>
 
 <body>
-  <div id="cash-app-pay"></div>
+  <main class="container">
+    <ul>
+      <li>This page attempts to launch Cash App on page load.</li>
+      <li>On Page load, it attepts to load the universal link the Cash App, which should open the app.</li>
+      <li>But it does not launch the app, instead it goes to an intermediate page hosted by Cash.</li>
+    </ul>
+    <div id="cash-app-pay"></div>
+  </main>
 </body>
 
 </html>

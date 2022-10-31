@@ -18,6 +18,11 @@
 
 <body>
   <main class="container">
+    <ul>
+      <li>This page only deals directly with the cash.app universal link.</li>
+      <li>It has a custom button that directly links to the cash.app universal link (again with no Cash APIs involved at all). When clicked on the phone, it launches the app.</li>
+      <li>It also automatically attempts to load the cash.app universal link in 10 seconds (again with no Cash APIs involved at all). It does not launch the app, only goes to an interstial page.</li>
+      <li>It demonstrates that we can't launch the app on page load, it has to be via a user-initiated action (like a button click).</li>
     <p>Auto loading universal link after 10 seconds: <a href="https://cash.app/$lanthonygarcia/.01">https://cash.app/$lanthonygarcia/.01</a></p>
     <button id="launch-link">Manually launch app via universal link</button>
     <script>
