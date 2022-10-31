@@ -69,7 +69,23 @@
 </head>
 
 <body>
-  <div id="cash-app-pay"></div>
+  <main class="container">
+    <ul>
+      <li>This page shows the out-of-box behavior of the Cash App Pay API.</li>
+      <li>The button is totally rendered and managed by Cash App.</li>
+      <li>When the button is clicked on a phone, it directly launches the app.</li>
+      <li>Additional Notes:</li>
+        <ul>
+          <li>When clicked, it loads an interstitial page hosted by Cash App.</li>
+          <li>The interstitial page immediately does a meta refresh to the universal link to the Cash App.</li>
+          <li>This launches the App.</li>
+          <li>The web page keeps the interstitial page open, which then polls a Cash API endpoint for payment status updates.</li>
+          <li>Once it gets a terminal status (approved, declined, error), it redirects back to the original page the button was hosted on </li>
+        </ul>
+    </ul>
+    <h1>Button Rendered and Managed by Cash App</h1>
+    <div id="cash-app-pay"></div>
+  </main>
 </body>
 
 </html>
