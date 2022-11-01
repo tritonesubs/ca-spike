@@ -1,47 +1,46 @@
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/pico.min.css">
-  <title>Experiments to Launch Cash App on Page Load</title>
-</head>
+<html data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pico.min.css">
+    <title>Experiments to Launch Cash App on Page Load</title>
+  </head>
 
-<body>
-  <main class="container">
-    <h1>Experiments to Launch Cash App on Page Load</h1>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Page</th>
-          <th scope="col">Description</th>
-          <th scope="col">Behavior</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row"><a href="cash-app-button.html">cash-app-button.html</a></th>
-          <td>Button rendered and totally managed by Cash API Button</td>
-          <td>When clicked on phone, directly launches Cash App</td>
-        </tr>
-        <tr>
-          <th scope="row"><a href="custom-button.html">custom-app-button.html</a></th>
-          <td>Custom button, rendered and managed by us</td>
-          <td>When clicked on phone, directly launches Cash App</td>
-        </tr>
-        <tr>
-          <th scope="row"><a href="window-load.html">window-load.html</a></th>
-          <td>Attempt to launch app on page load</td>
-          <td>When opened on phone, on page load automatically loads Cash App interstitial page</td>
-        </tr>
-        <tr>
-          <th scope="row"><a href="universal-link.html">universal-link.html</a></th>
-          <td>Directly use Universal Link without Cash Pay API involved. Demonstrates that not being able to launch app on page load is due to an iOS-level restriction</td>
-          <td>When opened on phone, in 10 seconds automatically loads Cash App interstitial page, but custom button launches Cash App.</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>* Source code here: <a href="https://github.com/tritonesubs/ca-spike">https://github.com/tritonesubs/ca-spike</a></p>
-  </main>
-</body>
-
+  <body>
+    <main class="container">
+      <h1>Experiments to Launch Cash App on Page Load</h1>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Page</th>
+            <th scope="col">Description</th>
+            <th scope="col">Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="cash-app-button.html">cash-app-button.html</a></th>
+            <td>Button rendered and totally managed by Cash API Button</td>
+            <td>When clicked on phone, directly launches Cash App</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="custom-button.html">custom-app-button.html</a></th>
+            <td>Custom button, rendered and managed by us</td>
+            <td>When clicked on phone, directly launches Cash App</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="window-load.html">window-load.html</a></th>
+            <td>Attempt to launch app on page load</td>
+            <td>When opened on phone, on page load automatically loads Cash App interstitial page</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="universal-link.html">universal-link.html</a></th>
+            <td>Directly use Universal Link without Cash Pay API involved. Demonstrates that not being able to launch app on page load is due to an iOS-level restriction</td>
+            <td>When opened on phone, in 10 seconds automatically loads Cash App interstitial page, but custom button launches Cash App.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>* Source code here: <a href="https://github.com/tritonesubs/ca-spike">https://github.com/tritonesubs/ca-spike</a></p>
+    </main>
+  </body>
 </html>

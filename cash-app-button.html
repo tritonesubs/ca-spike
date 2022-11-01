@@ -1,82 +1,82 @@
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/pico.min.css">
-  <title>Cash-App Managed Button</title>
+<html data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pico.min.css">
+    <title>Cash-App Managed Button</title>
 
-  <script src='https://kit.cash.app/v1/pay.js'></script>
-  <script type="module">
-   try {
-     const pay = await window.CashApp.pay({
-       clientId: "CA-CI_CAPWEB",
-     });
-     pay.addEventListener(
-       "CUSTOMER_REQUEST_APPROVED",
-       ({
-         grants,
-         referenceId,
-         customerProfile
-       }) => {
-         // send grant to backend to authorize payment
-         console.log(
-           "[Pay Kit] CUSTOMER_REQUEST_APPROVED",
+    <script src='https://kit.cash.app/v1/pay.js'></script>
+    <script type="module">
+     try {
+       const pay = await window.CashApp.pay({
+         clientId: "CA-CI_CAPWEB",
+       });
+       pay.addEventListener(
+         "CUSTOMER_REQUEST_APPROVED",
+         ({
            grants,
            referenceId,
            customerProfile
-         );
-       }
-     );
-     pay.addEventListener(
-       "CUSTOMER_REQUEST_DECLINED",
-       () => {
-         console.log(
-           "[Pay Kit] CUSTOMER_REQUEST_DECLINED"
-         );
-       }
-     );
+         }) => {
+           // send grant to backend to authorize payment
+           console.log(
+             "[Pay Kit] CUSTOMER_REQUEST_APPROVED",
+             grants,
+             referenceId,
+             customerProfile
+           );
+         }
+       );
+       pay.addEventListener(
+         "CUSTOMER_REQUEST_DECLINED",
+         () => {
+           console.log(
+             "[Pay Kit] CUSTOMER_REQUEST_DECLINED"
+           );
+         }
+       );
 
-     await pay.render("#cash-app-pay");
+       await pay.render("#cash-app-pay");
 
-     const invokeCashAppBegin = (source) => {
-       console.log(`Invoking Cash App begin from ${source}...`);
-       begin();
-       console.log(`Cash App begin invoked from ${source}.`);
-     };
+       const invokeCashAppBegin = (source) => {
+         console.log(`Invoking Cash App begin from ${source}...`);
+         begin();
+         console.log(`Cash App begin invoked from ${source}.`);
+       };
 
-     const amount = {
-       currency: 'USD',
-       value: 1234, // $12.34
-     };
+       const amount = {
+         currency: 'USD',
+         value: 1234, // $12.34
+       };
 
-     const scopeId = 'MMI_7ri08j2gjzbp7amzs1q5e14zb';
-     await pay.customerRequest({
-       referenceId: '99898789your_reference_id', // perhaps a cart or checkout identifier
-       redirectURL: window.location.href, // where mobile customers should be redirected to
-       actions: {
-         amount:amount,
-         //merchant_id: 'MMI_7ri08j2gjzbp7amzs1q5e14zb',
-         payment: {
-           scopeId: scopeId,
-           accountReferenceId: "123adfadfadfasd"
+       const scopeId = 'MMI_7ri08j2gjzbp7amzs1q5e14zb';
+       await pay.customerRequest({
+         referenceId: '99898789your_reference_id', // perhaps a cart or checkout identifier
+         redirectURL: window.location.href, // where mobile customers should be redirected to
+         actions: {
+           amount:amount,
+           //merchant_id: 'MMI_7ri08j2gjzbp7amzs1q5e14zb',
+           payment: {
+             scopeId: scopeId,
+             accountReferenceId: "123adfadfadfasd"
+           },
          },
-       },
-     });
-   } catch (error) {
-     console.error("[Pay Kit]", error);
-   }
-  </script>
-</head>
+       });
+     } catch (error) {
+       console.error("[Pay Kit]", error);
+     }
+    </script>
+  </head>
 
-<body>
-  <main class="container">
-    <h1>Button Rendered and Managed by Cash App</h1>
-    <h3>Notes:</h3>
-    <ul>
-      <li>This page shows the out-of-box behavior of the Cash App Pay API.</li>
-      <li>The button is totally rendered and managed by Cash App.</li>
-      <li>When the button is clicked on a phone, it directly launches the app.</li>
-      <li>Additional Notes:</li>
+  <body>
+    <main class="container">
+      <h1>Button Rendered and Managed by Cash App</h1>
+      <h3>Notes:</h3>
+      <ul>
+        <li>This page shows the out-of-box behavior of the Cash App Pay API.</li>
+        <li>The button is totally rendered and managed by Cash App.</li>
+        <li>When the button is clicked on a phone, it directly launches the app.</li>
+        <li>Additional Notes:</li>
         <ul>
           <li>When clicked, it loads an interstitial page hosted by Cash App.</li>
           <li>The interstitial page immediately does a meta refresh to the universal link to the Cash App.</li>
@@ -84,9 +84,8 @@
           <li>The web page keeps the interstitial page open, which then polls a Cash API endpoint for payment status updates.</li>
           <li>Once it gets a terminal status (approved, declined, error), it redirects back to the original page the button was hosted on </li>
         </ul>
-    </ul>
-    <div id="cash-app-pay"></div>
-  </main>
-</body>
-
+      </ul>
+      <div id="cash-app-pay"></div>
+    </main>
+  </body>
 </html>
